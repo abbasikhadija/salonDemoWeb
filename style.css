@@ -1,0 +1,201 @@
+/* ===== Base / Reset ===== */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: #111;
+  display: flex;
+  flex-direction: column;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ===== Layout tokens ===== */
+:root{
+  --max: 1100px;
+  --pad: 16px;
+  --gap: 16px;
+  --radius: 12px;
+  --shadow: 0 6px 20px rgba(0,0,0,.08);
+}
+
+/* reusable container */
+.container{
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--pad);
+}
+
+/* reusable card */
+.card{
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 16px;
+}
+
+.section-title{
+  margin: 0 0 16px;
+}
+
+/* ===== Header ===== */
+#header{
+  background-color: #333;
+  color: #fff;
+}
+
+.header-inner{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap);
+  padding: 12px 0;
+}
+
+#socials, #logo{
+  min-width: 120px; /* helps spacing even before you add images */
+}
+
+#logo{
+  font-weight: 700;
+  text-align: center;
+}
+
+#nav{
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+#nav a{
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 10px;
+  border-radius: 8px;
+}
+
+#nav a:hover{
+  background: rgba(255,255,255,.12);
+}
+
+/* ===== Hero ===== */
+#hero{
+  padding: 36px 0;
+}
+
+.hero-inner{
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.hero-text{
+  flex: 1.1; /* proportion: a bit more space for text */
+}
+
+.hero-media{
+  flex: 0.9; /* proportion: slightly smaller image area */
+}
+
+.hero-media img{
+  border-radius: var(--radius);
+  height: 320px;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* button */
+.btn{
+  display: inline-block;
+  margin-top: 12px;
+  background: #111;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 14px;
+  border-radius: 10px;
+}
+
+/* ===== Services ===== */
+#services{
+  background-color: #f2f2f2;
+  padding: 28px 0;
+}
+
+.cards{
+  display: flex;
+  gap: var(--gap);
+  justify-content: space-between;
+}
+
+.service{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.service img{
+  height: 160px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* ===== Testimonials ===== */
+#testimonials{
+  padding: 28px 0;
+}
+
+.testimonial{
+  flex: 1;
+}
+
+/* ===== Contact ===== */
+#contact{
+  background: #f2f2f2;
+  padding: 28px 0 48px;
+}
+
+.contact-inner{
+  display: flex;
+  gap: var(--gap);
+}
+
+.contact-inner > .card{
+  flex: 1;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 900px){
+  .hero-inner{
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .hero-media img{
+    height: 240px;
+  }
+
+  .cards{
+    flex-direction: column;
+  }
+
+  .contact-inner{
+    flex-direction: column;
+  }
+
+  .header-inner{
+    flex-direction: column;
+    align-items: stretch;
+  }
+  #logo{
+    text-align: left;
+  }
+  #nav{
+    justify-content: flex-start;
+  }
+}
