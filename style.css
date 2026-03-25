@@ -1,9 +1,43 @@
 /* ===== Base / Reset ===== */
 * { box-sizing: border-box; }
+
+:root{
+  /* ===== Colors (60-30-10 rule) ===== */
+  /* ===== New Palette Applied ===== */
+  --base-1: #F8F3E1;   /* main background (softest) */
+  --base-2: #E3DBBB;   /* section contrast */
+
+  --primary: #41431B;  /* dark olive (structure) */
+  --accent: #AEB784;   /* soft green (CTA + highlights) */
+
+  --text-dark: #2b2b2b;
+  --white: #ffffff;
+
+
+  /* ===== Layout tokens ===== */
+  --max: 1100px;
+  --pad: 16px;
+  --gap: 16px;
+  --radius: 12px;
+  --shadow: 0 6px 20px rgba(0,0,0,.08);
+
+  /* ===== Typography ===== */
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --fs-1: 0.95rem;
+  --fs-2: 1.05rem;
+  --fs-3: 1.25rem;
+  --fs-4: 1.75rem;
+  --fs-5: clamp(2rem, 3.5vw, 3rem);
+  --lh: 1.6;
+}
+
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  color: #111;
+  font-family: var(--font);
+  font-size: var(--fs-2);
+  line-height: var(--lh);
+  background-color: var(--base-1);
+  color: var(--text-dark);
   display: flex;
   flex-direction: column;
 }
@@ -13,25 +47,15 @@ img {
   display: block;
 }
 
-/* ===== Layout tokens ===== */
-:root{
-  --max: 1100px;
-  --pad: 16px;
-  --gap: 16px;
-  --radius: 12px;
-  --shadow: 0 6px 20px rgba(0,0,0,.08);
-}
-
-/* reusable container */
+/* ===== Layout ===== */
 .container{
   max-width: var(--max);
   margin: 0 auto;
   padding: 0 var(--pad);
 }
 
-/* reusable card */
 .card{
-  background: #fff;
+  background: var(--white);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   padding: 16px;
@@ -39,12 +63,15 @@ img {
 
 .section-title{
   margin: 0 0 16px;
+  font-size: var(--fs-4);
+  font-weight: 800;
+  color: var(--primary);
 }
 
 /* ===== Header ===== */
 #header{
-  background-color: #333;
-  color: #fff;
+  background-color: var(--primary);
+  color: var(--white);
 }
 
 .header-inner{
@@ -55,31 +82,34 @@ img {
   padding: 12px 0;
 }
 
-#socials, #logo{
-  min-width: 120px; /* helps spacing even before you add images */
+#logo{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 800;
 }
 
-#logo{
-  font-weight: 700;
-  text-align: center;
+#logo p{
+  margin: 0;
 }
 
 #nav{
   display: flex;
   gap: 14px;
   flex-wrap: wrap;
-  justify-content: flex-end;
 }
 
 #nav a{
-  color: #fff;
+  color: var(--white);
   text-decoration: none;
   padding: 8px 10px;
   border-radius: 8px;
+  font-weight: 600;
+  transition: 0.2s;
 }
 
 #nav a:hover{
-  background: rgba(255,255,255,.12);
+  background: var(--accent);
 }
 
 /* ===== Hero ===== */
@@ -94,11 +124,16 @@ img {
 }
 
 .hero-text{
-  flex: 1.1; /* proportion: a bit more space for text */
+  flex: 1.1;
 }
 
-.hero-media{
-  flex: 0.9; /* proportion: slightly smaller image area */
+.hero-text h1{
+  font-size: var(--fs-5);
+  margin-bottom: 10px;
+}
+
+.hero-text p{
+  color: #444;
 }
 
 .hero-media img{
@@ -108,27 +143,33 @@ img {
   object-fit: cover;
 }
 
-/* button */
+/* ===== Button ===== */
 .btn{
   display: inline-block;
   margin-top: 12px;
-  background: #111;
-  color: #fff;
+  background: var(--accent);
+  color: var(--white);
   text-decoration: none;
-  padding: 10px 14px;
+  padding: 12px 16px;
   border-radius: 10px;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+.btn:hover{
+  background: var(--primary);
+  transform: translateY(-2px);
 }
 
 /* ===== Services ===== */
 #services{
-  background-color: #f2f2f2;
+  background-color: var(--base-2);
   padding: 28px 0;
 }
 
 .cards{
   display: flex;
   gap: var(--gap);
-  justify-content: space-between;
 }
 
 .service{
@@ -136,7 +177,6 @@ img {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  align-items: flex-start;
 }
 
 .service img{
@@ -146,6 +186,15 @@ img {
   border-radius: 10px;
 }
 
+.service.card{
+  transition: 0.2s;
+}
+
+.service.card:hover{
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
 /* ===== Testimonials ===== */
 #testimonials{
   padding: 28px 0;
@@ -153,11 +202,40 @@ img {
 
 .testimonial{
   flex: 1;
+  position: relative;
+  border-left: 5px solid var(--accent);
+  font-style: italic;
+  transition: 0.25s;
+}
+
+.testimonial:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+}
+
+.testimonial p{
+  margin-bottom: 10px;
+}
+
+.testimonial span{
+  font-weight: 700;
+  color: var(--primary);
+}
+
+/* quote symbol */
+.testimonial::before{
+  content: "“";
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  font-size: 60px;
+  color: var(--accent);
+  opacity: 0.2;
 }
 
 /* ===== Contact ===== */
 #contact{
-  background: #f2f2f2;
+  background: var(--base-2);
   padding: 28px 0 48px;
 }
 
@@ -170,14 +248,45 @@ img {
   flex: 1;
 }
 
+/* ===== Social Buttons ===== */
+.socials {
+  display: flex;
+  gap: 12px;
+}
+
+.social-btn {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: var(--white);
+  border: 1px solid var(--base-2);
+  transition: 0.2s;
+}
+
+.social-btn:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.social-btn img {
+  width: 22px;
+}
+
+/* ===== Logo ===== */
+.biz-logo {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
 /* ===== Responsive ===== */
 @media (max-width: 900px){
   .hero-inner{
     flex-direction: column;
-    align-items: stretch;
-  }
-  .hero-media img{
-    height: 240px;
   }
 
   .cards{
@@ -190,12 +299,15 @@ img {
 
   .header-inner{
     flex-direction: column;
-    align-items: stretch;
   }
-  #logo{
-    text-align: left;
-  }
-  #nav{
-    justify-content: flex-start;
-  }
+}
+.service img{
+  height: 260px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.service h3{
+  margin-top: 6px;
 }
